@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using DatingApp.API.Data;
 using DatingApp.API.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DateingApp.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
@@ -32,16 +34,21 @@ namespace DateingApp.API.Controllers
                 v.Name = "value"+i.ToString();
                 values.Add(v);
             }
+          // var user= _context.Users.FirstOrDefault(c => c.Id ==/*what ever you want */);
             //values.Add()
             //return Ok(  new string[] { "value1", "value2" });
             return Ok(values);
         }
-
+        // fen ??
         // GET api/values/5
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var value = _context.Values.FirstOrDefault(x=>x.Id==id);
+           // var value = _context.Values.FirstOrDefault(x=>x.Id==id);
+           var value = new Value();
+           value.Id = id;
+           value.Name = "value"+id.ToString();
             return Ok(value);
             //return "value";
         }
