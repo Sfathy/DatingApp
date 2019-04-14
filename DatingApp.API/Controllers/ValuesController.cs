@@ -20,21 +20,22 @@ namespace DateingApp.API.Controllers
             _context = context;
 
         }
+        [AllowAnonymous]
         // GET api/values
         [HttpGet]
         public  IActionResult Get()
         {
-           // var values =  _context.Values.ToList();
-            List<Value> values = new List<Value>();
-            Value v ;
-            for (int i = 0; i < 3; i++)
-            {
-                v = new Value();
-                v.Id = i;
-                v.Name = "value"+i.ToString();
-                values.Add(v);
-            }
-          // var user= _context.Users.FirstOrDefault(c => c.Id ==/*what ever you want */);
+            var values =  _context.Values.ToList();
+            // List<Value> values = new List<Value>();
+            // Value v ;
+            // for (int i = 0; i < 3; i++)
+            // {
+            //     v = new Value();
+            //     v.Id = i;
+            //     v.Name = "value"+i.ToString();
+            //     values.Add(v);
+            // }
+           //var user= _context.Users.FirstOrDefault(c => c.Id ==/*what ever you want */);
             //values.Add()
             //return Ok(  new string[] { "value1", "value2" });
             return Ok(values);
@@ -45,10 +46,10 @@ namespace DateingApp.API.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-           // var value = _context.Values.FirstOrDefault(x=>x.Id==id);
-           var value = new Value();
-           value.Id = id;
-           value.Name = "value"+id.ToString();
+            var value = _context.Values.FirstOrDefault(x=>x.Id==id);
+        //    var value = new Value();
+        //    value.Id = id;
+        //    value.Name = "value"+id.ToString();
             return Ok(value);
             //return "value";
         }
