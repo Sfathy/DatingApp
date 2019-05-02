@@ -27,6 +27,9 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { MemberDetailsComponent } from './members/member-details/member-details.component';
 import { MemeberDetailResolver } from './_resolvers/member-details.resolver';
 import { MemeberListResolver } from './_resolvers/member-list.resolver';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { MemeberEditResolver } from './_resolvers/member-edit.resolver';
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 
 
 @NgModule({
@@ -39,7 +42,8 @@ import { MemeberListResolver } from './_resolvers/member-list.resolver';
       ListsComponent,
       MessagesComponent,
       MemberCardComponent,
-      MemberDetailsComponent
+      MemberDetailsComponent,
+      MemberEditComponent
    ],
    imports: [
       BrowserModule,
@@ -63,9 +67,11 @@ import { MemeberListResolver } from './_resolvers/member-list.resolver';
       ErrorInterceptorProvider,
       AlertifyService,
       AuthGuard,
+      PreventUnsavedChanges,
       UserService,
       MemeberDetailResolver,
-      MemeberListResolver
+      MemeberListResolver,
+      MemeberEditResolver
    ],
    bootstrap: [
       AppComponent
